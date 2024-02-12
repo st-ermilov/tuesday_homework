@@ -4,23 +4,27 @@ import {AffairType, FilterType} from '../HW2'
 import s from './Affairs.module.css'
 
 type AffairsPropsType = {
-    data: any // need to fix any
-    setFilter: any
-    deleteAffairCallback: any
+    data: AffairType[] // need to fix any
+    setFilter:  React.Dispatch<React.SetStateAction<FilterType>>
+    deleteAffairCallback: (_id: number) => void
     filter: FilterType
 }
 
 function Affairs(props: AffairsPropsType) {
     const setAll = () => {
+        props.setFilter('all')
         // need to fix
     }
     const setHigh = () => {
+        props.setFilter('high')
         // need to fix
     }
     const setMiddle = () => {
+        props.setFilter('middle')
         // need to fix
     }
     const setLow = () => {
+        props.setFilter('low')
         // need to fix
     }
 
@@ -44,9 +48,7 @@ function Affairs(props: AffairsPropsType) {
                     id={'hw2-button-all'}
                     onClick={setAll}
                     className={cnAll}
-                >
-                    All
-                </button>
+                >All</button>
                 <button
                     id={'hw2-button-high'}
                     onClick={setHigh}
