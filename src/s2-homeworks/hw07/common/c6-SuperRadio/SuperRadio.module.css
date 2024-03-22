@@ -1,4 +1,12 @@
 .radio {
+    appearance: none;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid black;
+    position: relative;
+    transition: all 800ms ease;
 }
 
 .radio::before {
@@ -6,10 +14,31 @@
 
 
 .radio:checked::before {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    content: ' ';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: black;
+    transform: translate(-50%, -50%);
+    transition: all 400ms ease;
+
 }
 
 .label {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 5px;
 }
 
 .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: start;
+    justify-content: start;
 }
