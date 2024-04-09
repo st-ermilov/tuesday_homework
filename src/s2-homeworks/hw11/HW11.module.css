@@ -1,8 +1,16 @@
 .container {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .wrapper {
+    display: flex;
+justify-content: center;
+    align-items: center;
 }
 
 .number {
+    margin: 15px;
 }
