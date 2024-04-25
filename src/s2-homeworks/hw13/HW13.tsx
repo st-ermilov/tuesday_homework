@@ -37,21 +37,21 @@ const HW13 = () => {
                 setCode('Код 200!')
                 setImage(success200)
                 setText('...всё ок)')
-                setInfo('')
+                setInfo('код 200 - обычно означает что скорее всего всё ок)')
 
             })
             .catch((e) => {
                 switch (x) {
                 case false:
                     {
-                        setInfo('')
+                        setInfo('ошибка 500 - обычно означает что что-то сломалось на сервере, например база данных)')
                         setCode('Ошибка 500!')
                         setImage(error500)
                         setText('эмитация ошибки на сервере')
                         break
                     }
                     case undefined: {
-                        setInfo('')
+                        setInfo('ошибка 400 - обычно означает что скорее всего фронт отправил что-то не то на бэк!')
                         setCode('Ошибка 400!')
                         setImage(error400)
                         setText('Ты не отправил success в body вообще!')
