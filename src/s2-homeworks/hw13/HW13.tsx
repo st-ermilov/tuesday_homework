@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import s2 from '../../s1-main/App.module.css'
 import s from './HW13.module.css'
 import SuperButton from '../hw04/common/c2-SuperButton/SuperButton'
-import axios from 'axios'
+import axios, {AxiosError} from 'axios'
 import success200 from './images/200.svg'
 import error400 from './images/400.svg'
 import error500 from './images/500.svg'
@@ -36,12 +36,45 @@ const HW13 = () => {
             .then((res) => {
                 setCode('Код 200!')
                 setImage(success200)
-                // дописать
+                setText('...всё ок)\n' +
+                    'код 200 - обычно означает что скорее всего всё ок)')
+                setInfo('')
 
             })
             .catch((e) => {
-                // дописать
-
+                switch (x) {
+                case false:
+                    {
+                        setInfo('')
+                        setCode('Ошибка 500!')
+                        setImage(error500)
+                        setText('эмитация ошибки на сервере\n' +
+                            'ошибка 500 - обычно означает что что-то сломалось на сервере, например база данных)')
+                        break
+                    }
+                    case undefined: {
+                        console.log('Это undefined' + ' ' + e)
+                        setInfo('')
+                        setCode('Ошибка 400!')
+                        setImage(error400)
+                        setText('Ты не отправил success в body вообще!\n' +
+                            'ошибка 400 - обычно означает что скорее всего фронт отправил что-то не то на бэк!')
+                        break
+                    }
+                    case null: {
+                        console.log('Это null' + ' ' + e)
+                        setInfo('')
+                        setCode('Error!')
+                        setImage(errorUnknown)
+                        setText('Network Error\n' +
+                            'AxiosError')
+                        break
+                    }
+                    default:
+                    {
+                        return x
+                    }
+                }
             })
     }
 
@@ -55,6 +88,7 @@ const HW13 = () => {
                         id={'hw13-send-true'}
                         onClick={send(true)}
                         xType={'secondary'}
+                        disabled={info === '...loading'}
                         // дописать
 
                     >
@@ -64,6 +98,7 @@ const HW13 = () => {
                         id={'hw13-send-false'}
                         onClick={send(false)}
                         xType={'secondary'}
+                        disabled={info === '...loading'}
                         // дописать
 
                     >
@@ -73,6 +108,7 @@ const HW13 = () => {
                         id={'hw13-send-undefined'}
                         onClick={send(undefined)}
                         xType={'secondary'}
+                        disabled={info === '...loading'}
                         // дописать
 
                     >
@@ -82,6 +118,7 @@ const HW13 = () => {
                         id={'hw13-send-null'}
                         onClick={send(null)} // имитация запроса на не корректный адрес
                         xType={'secondary'}
+                        disabled={info === '...loading'}
                         // дописать
 
                     >
@@ -93,7 +130,6 @@ const HW13 = () => {
                     <div className={s.imageContainer}>
                         {image && <img src={image} className={s.image} alt="status"/>}
                     </div>
-
                     <div className={s.textContainer}>
                         <div id={'hw13-code'} className={s.code}>
                             {code}
