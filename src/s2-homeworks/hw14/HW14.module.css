@@ -3,5 +3,9 @@
 }
 
 .loading {
-
+    width: 372px;
+    display: flex;
+    justify-content: end;
+    font-size: 14px;
+    color: gray;
 }
