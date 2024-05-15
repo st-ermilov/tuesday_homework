@@ -52,29 +52,34 @@ const HW15 = () => {
         getTechs(params)
             .then((res) => {
                 // делает студент
-
+                if(res) {
+                    setTechs(res.data.techs)
+                    setTotalCount(res.data.totalCount)
+                }
+                setLoading(false)
                 // сохранить пришедшие данные
-
                 //
             })
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
         // делает студент
-
-        // setPage(
-        // setCount(
-
-        // sendQuery(
-        // setSearchParams(
-
+        const newParams = {sort, page: newPage.toString(), count: newCount.toString()}
+        setPage(newPage)
+        setCount(newCount)
+        sendQuery(newParams)
+        setSearchParams(newParams)
+        console.log(count)
         //
     }
 
     const onChangeSort = (newSort: string) => {
         // делает студент
 
-        // setSort(
+        setSort(newSort)
+        const newParams = {sort: newSort.toString(), page: '1', count: count.toString()};
+        sendQuery(newParams);
+        setSearchParams(newParams);
         // setPage(1) // при сортировке сбрасывать на 1 страницу
 
         // sendQuery(
@@ -118,12 +123,12 @@ const HW15 = () => {
 
                 <div className={s.rowHeader}>
                     <div className={s.techHeader}>
-                        tech
+                        Tech
                         <SuperSort sort={sort} value={'tech'} onChange={onChangeSort}/>
                     </div>
 
                     <div className={s.developerHeader}>
-                        developer
+                        Developer
                         <SuperSort sort={sort} value={'developer'} onChange={onChangeSort}/>
                     </div>
                 </div>

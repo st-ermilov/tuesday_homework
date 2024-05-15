@@ -8,18 +8,27 @@
 
 .techHeader {
     width: 50vw;
+    display: flex;
+    align-items: center;
 }
 
 .developerHeader {
-
+    display: flex;
+    align-items: center;
 }
 
 .row {
     display: flex;
+    padding: 10px;
+    border-top: 1px solid #E5E5E5;
+
 }
 
 .rowHeader {
     display: flex;
+    align-items: center;
+    background-color: #E5E5E5;
+    padding: 10px;
 }
 
 .loading {
